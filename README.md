@@ -8,7 +8,7 @@ $ nix-instantiate --eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 $ $ nix eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 { a = "a-b"; }
 # use console.log unless there is already console.log in the example
-$ node -e 'console.log(console.log(((x, y) => ({ a: x + "-" + y }))("a", "b")))
+$ node -e 'console.log(((x, y) => ({ a: x + "-" + y }))("a", "b"))'
 { a: 'a-b' }
 ```
 
