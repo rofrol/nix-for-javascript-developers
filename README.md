@@ -11,7 +11,7 @@ $ node -e 'console.log(((x, y) => ({ a: x + "-" + y }))("a", "b"))'
 { a: 'a-b' }
 ```
 
-To have `nix eval` available in nixos stable, you need to install unstable nix command as described in https://nixos.wiki/wiki/Flakes.
+If you want to have `nix eval` available in nixos stable, you need to install unstable nix command as described in https://nixos.wiki/wiki/Flakes.
 
 
 ## Examples
