@@ -38,6 +38,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `({ a ? 2 }: a) {}` | `(({ a = 2 }) => a)({})` |
 | `let double = x: x*2; in double 3` | `const double = x => x*2; console.log(double(3));` |
 | `let mul = a: (b: a*b); in (mul 2) 3` | `const mul = a => b =>  a*b; console.log(mul(2)(3));` |
+| `let x = 3; mul = a: (b: a*b); in (mul 2) 3` | `const x = 3, mul = a => b =>  a*b; console.log(mul(x)(3));` |
 | `if true then 3 else 2` | `true ? 3: 2` |
 
 ## Links
