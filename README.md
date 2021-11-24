@@ -7,6 +7,7 @@ $ nix-instantiate --eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 { a = <CODE>; }
 $ $ nix eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 { a = "a-b"; }
+# use console.log unless there is already console.log in the example
 $ node -e 'console.log(Math.ceil(-2/3))
 -0
 ```
@@ -19,7 +20,7 @@ To have `nix eval` available in nixos stable, you need to install unstable nix c
 | Nix | Javascript |
 | --- | --- |
 | `"Hello world!"` | `"Hello world!"` |
-| `2/3` - path literal | |
+| `2/3` | `const path = require("path"); console.log(path.join("2", "3"));` |
 | `2/ 3` | `Math.ceil(2/3)` | |
 | `2/ 3.` | `2/3` |
 | `(a: { a = a; }) 2` | `(a => ({ a: a }))(2)` |
