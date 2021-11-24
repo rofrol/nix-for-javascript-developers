@@ -30,6 +30,13 @@ To have `nix eval` available in nixos stable, you need to install unstable nix c
 | `({a, b, ... }: { inherit a b; }) { a = 2; b = 3; c = 4; }` | `(({a, b }) => ({ a, b }))({a: 2, b: 3, c: 4})` |
 | `(a: { inherit (a.b) c; }) { b = { c = 2; }; }` | `(a => ({ c: a.b.c }))({b: { c: 2 } })` |
 
+## Links
+
+- https://learnxinyminutes.com/docs/nix/
+- https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55
+- https://nixery.dev/nix-1p.html
+- https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-eval.html
+
 ## Expression vs statement
 
 You can read that Nix is Nix expression language.
