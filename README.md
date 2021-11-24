@@ -29,6 +29,7 @@ To have `nix eval` available in nixos stable, you need to install unstable nix c
 | `(a: b: { inherit a b; }) 2 3` | `((a, b) => ({ a, b }))(2, 3)` |
 | `({ a }: { inherit a; }) { a = 2; }` | `(({ a }) => ({ a }))({ a: 2 })` |
 | `({ a, b, ... }: { inherit a b; }) { a = 2; b = 3; c = 4; }` | `(({ a, b }) => ({ a, b }))({ a: 2, b: 3, c: 4 })` |
+| `(a: { c = a.b.c; }) { b = { c = 2; }; }` | `(a => ({ c: a.b.c }))({ b: { c: 2 } })` |
 | `(a: { inherit (a.b) c; }) { b = { c = 2; }; }` | `(a => ({ c: a.b.c }))({ b: { c: 2 } })` |
 | `({ a ? 2 }: a) {}` | `(({ a = 2 }) => a)({})` |
 
