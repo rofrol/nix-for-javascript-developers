@@ -27,9 +27,10 @@ To have `nix eval` available in nixos stable, you need to install unstable nix c
 | `(a: b: { a = a; b = b; }) 2 3` | `((a, b) => ({ a: a, b: b }))(2, 3)` |
 | `(a: { inherit a; }) 2` | `(a => ({ a }))(2)` |
 | `(a: b: { inherit a b; }) 2 3` | `((a, b) => ({ a, b }))(2, 3)` |
-| `({a}: { inherit a; }) { a = 2; }` | `(({ a }) => ({ a }))({ a: 2 })` |
-| `({a, b, ... }: { inherit a b; }) { a = 2; b = 3; c = 4; }` | `(({ a, b }) => ({ a, b }))({ a: 2, b: 3, c: 4 })` |
+| `({ a }: { inherit a; }) { a = 2; }` | `(({ a }) => ({ a }))({ a: 2 })` |
+| `({ a, b, ... }: { inherit a b; }) { a = 2; b = 3; c = 4; }` | `(({ a, b }) => ({ a, b }))({ a: 2, b: 3, c: 4 })` |
 | `(a: { inherit (a.b) c; }) { b = { c = 2; }; }` | `(a => ({ c: a.b.c }))({ b: { c: 2 } })` |
+| `({ a ? 2 }: a) {}` | `(({ a = 2 }) => a)({})` |
 
 ## Links
 
@@ -38,6 +39,7 @@ To have `nix eval` available in nixos stable, you need to install unstable nix c
 - https://nixery.dev/nix-1p.html
 - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-eval.html
 - https://nixos.wiki/wiki/Nix_command/eval
+- https://nixos.org/guides/nix-pills/functions-and-imports.html
 
 ## Expression vs statement
 
