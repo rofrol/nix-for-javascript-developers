@@ -7,6 +7,11 @@ $ nix-instantiate --eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 { a = <CODE>; }
 $ nix eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 { a = "a-b"; }
+```
+
+For node you must use `console.log` unless it is already in the example.
+
+```bash
 $ node -e 'console.log(((x, y) => ({ a: x + "-" + y }))("a", "b"))'
 { a: 'a-b' }
 ```
@@ -31,6 +36,8 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `(a: { c = a.b.c; }) { b = { c = 2; }; }` | `(a => ({ c: a.b.c }))({ b: { c: 2 } })` |
 | `(a: { inherit (a.b) c; }) { b = { c = 2; }; }` | `(a => ({ c: a.b.c }))({ b: { c: 2 } })` |
 | `({ a ? 2 }: a) {}` | `(({ a = 2 }) => a)({})` |
+| `let double = x: x*2; in double 3` | `let double = x => x*2; console.log(double(3));` |
+| `let mul = a: (b: a*b); in (mul 2) 3` | `let mul = a => b =>  a*b; console.log(mul(2)(3));` |
 
 ## Links
 
