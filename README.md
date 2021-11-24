@@ -37,6 +37,7 @@ To have `nix eval` available in nixos stable, you need to install unstable nix c
 - https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55
 - https://nixery.dev/nix-1p.html
 - https://nixos.org/manual/nix/unstable/command-ref/new-cli/nix3-eval.html
+- https://nixos.wiki/wiki/Nix_command/eval
 
 ## Expression vs statement
 
