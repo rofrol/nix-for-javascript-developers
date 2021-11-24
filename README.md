@@ -8,8 +8,8 @@ $ nix-instantiate --eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 $ $ nix eval --expr '(x: y: { a = x + "-" + y; }) "a" "b"'
 { a = "a-b"; }
 # use console.log unless there is already console.log in the example
-$ node -e 'console.log(Math.ceil(-2/3))
--0
+$ node -e 'console.log(console.log(((x, y) => ({ a: x + "-" + y }))("a", "b")))
+{ a: 'a-b' }
 ```
 
 To have `nix eval` available in nixos stable, you need to install unstable nix command as described in https://nixos.wiki/wiki/Flakes.
