@@ -45,6 +45,8 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `builtins.tail [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1)` |
 | `lib.lists.drop 2 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(2)` |
 | `lib.lists.sublist 1 3 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1, 4)` |
+| `builtins.concatStringsSep "\n" ["a" "b" "c"]` | `["a", "b", "c"].join("\n")` |
+| `lib.flatten (builtins.split "\n" "a\nb\nc")` | `"a\nb\nc".split("\n")` |
 
 ## Links
 
