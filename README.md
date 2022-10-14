@@ -40,6 +40,11 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `let mul = a: (b: a*b); in (mul 2) 3` | `const mul = a => b =>  a*b; console.log(mul(2)(3));` |
 | `let x = 3; mul = a: (b: a*b); in (mul 2) 3` | `const x = 3, mul = a => b =>  a*b; console.log(mul(x)(3));` |
 | `if true then 3 else 2` | `true ? 3: 2` |
+| `builtins.head [0 1 2 3 4]` | `[0, 1, 2, 3, 4][0]` |
+| `lib.lists.take 4 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(0, 4)` |
+| `builtins.tail [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1)` |
+| `lib.lists.drop 2 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(2)` |
+| `lib.lists.sublist 1 3 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1, 4)` |
 
 ## Links
 
