@@ -111,6 +111,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 ## Links
 
 - https://github.com/nix-community/awesome-nix#learning
+- https://nixos.org/manual/nix/stable/language/builtins.html
 - https://learnxinyminutes.com/docs/nix/
 - https://medium.com/@MrJamesFisher/nix-by-example-a0063a1a4c55
 - https://nixery.dev/nix-1p.html
