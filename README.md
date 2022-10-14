@@ -59,6 +59,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 - https://nixos.org/guides/nix-pills/functions-and-imports.html
 - https://ryantm.github.io/nixpkgs/functions/
 - https://teu5us.github.io/nix-lib.html
+- https://github.com/NixOS/nixpkgs/blob/master/lib/
 
 ## Expression vs statement
 
