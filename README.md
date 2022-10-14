@@ -24,9 +24,24 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | Nix | Javascript |
 | --- | --- |
 | `"Hello world!"` | `"Hello world!"` |
+| `if true then 3 else 2` | `true ? 3: 2` |
+| `builtins.typeOf ""` | `typeof ""` |
+
+### Numbers
+
+| Nix | Javascript |
+| --- | --- |
 | `2/3` | `require("path").join("2", "3")` |
-| `2/ 3` | `Math.ceil(2/3)` | |
+| `2/ 3` | `Math.floor(2/3)` | |
 | `2/ 3.` | `2/3` |
+| `builtins.bitAnd 2 3` | `2 & 3` |
+| `builtins.bitOr 2 3` | `2 \| 3` |
+| `builtins.bitXor 2 3` | `2 ^ 3` |
+
+### Functions
+
+| Nix | Javascript |
+| --- | --- |
 | `(a: { a = a; }) 2` | `(a => ({ a: a }))(2)` |
 | `(a: { inherit a; }) 2` | `(a => ({ a }))(2)` |
 | `(a: b: { a = a; b = b; }) 2 3` | `((a, b) => ({ a: a, b: b }))(2, 3)` |
@@ -39,14 +54,59 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `let double = x: x*2; in double 3` | `const double = x => x*2; console.log(double(3));` |
 | `let mul = a: (b: a*b); in (mul 2) 3` | `const mul = a => b =>  a*b; console.log(mul(2)(3));` |
 | `let x = 3; mul = a: (b: a*b); in (mul 2) 3` | `const x = 3, mul = a => b =>  a*b; console.log(mul(x)(3));` |
-| `if true then 3 else 2` | `true ? 3: 2` |
+
+### Strings
+
+| Nix | Javascript |
+| --- | --- |
+| `builtins.stringLength "abc"` | `"abc".length` |
+| `builtins.concatStringsSep "\n" ["a" "b" "c"]` | `["a", "b", "c"].join("\n")` |
+| `lib.splitString "/" "a/b/c"` | `"a/b/c".split("/")` |
+| `lib.flatten (builtins.split "/+" "//a/b")` | `"//a/b".split(/\/+/)` |
+| `builtins.match "[a-z]" "a" != null` | `/[a-z]/.test("a")` |
+| `builtins.elemAt (builtins.match ".*([a-z]).*" "-a-") 0` | `"-a-".match(/.*([a-z]).*/)[1]` |
+| `builtins.replaceStrings ["a"] ["b"] "aa"` | `"aa".replace(/a/g, "b")` |
+| `builtins.fromJSON ''[0, 1, 2]''` | ``JSON.parse(`[0, 1, 2]`)`` |
+| `builtins.toJSON [0 1 2]` | `JSON.stringify([0, 1, 2])` |
+| `builtins.getEnv "HOME"` | `require("process").env["HOME"]` |
+
+### Arrays
+
+| Nix | Javascript |
+| --- | --- |
+| `builtins.elemAt [0 1 2] 2` | `[0, 1, 2][2]` |
+| `builtins.elem 2 [0 1 2]` | `[0, 1, 2].includes(2)` |
+| `builtins.map (x: x+1) [0 1 2]` | `[0, 1, 2].map(x => x+1)` |
+| `builtins.filter (x: x>0) [0 1 2]` | `[0, 1, 2].filter(x => x>0)` |
+| `[1 2] ++ [3 4]` | `[1, 2].concat([3, 4])` |
+| `builtins.concatLists [[1 2] [3 4] [5 6]]` | `[].concat([1, 2], [3, 4], [5, 6])` |
 | `builtins.head [0 1 2 3 4]` | `[0, 1, 2, 3, 4][0]` |
 | `lib.lists.take 4 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(0, 4)` |
 | `builtins.tail [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1)` |
 | `lib.lists.drop 2 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(2)` |
 | `lib.lists.sublist 1 3 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1, 4)` |
-| `builtins.concatStringsSep "\n" ["a" "b" "c"]` | `["a", "b", "c"].join("\n")` |
-| `lib.flatten (builtins.split "\n" "a\nb\nc")` | `"a\nb\nc".split("\n")` |
+| `builtins.genList (x: x * x) 5` | `Array.from({ length: 5 }).map((_, x) => x * x)` |
+
+### Objects
+
+| Nix | Javascript |
+| --- | --- |
+| `builtins.attrNames {a=1;}` | `Object.keys({a:1})` |
+| `builtins.attrValues {a=1;}` | `Object.values({a:1})` |
+| `builtins.hasAttr "a" {a=1;}` | `Object.hasOwn({a:1}, "a") == "a" in {a:1}` |
+| `{a=1;}.a` | `{a:1}.a` |
+| `{a=1;}.${"a"}` | `{a:1}["a"]` |
+| `builtins.getAttr "a" {a=1;}` | `{a:1}["a"]` |
+
+### Files
+
+| Nix | Javascript |
+| --- | --- |
+| `builtins.baseNameOf "a/b/c.d"` | `require("path").basename("a/b/c.d")` |
+| `builtins.dirOf "a/b/c.d"` | `require("path").dirname("a/b/c.d")` |
+| `builtins.readDir "/"` | `require("fs").readdirSync("/")` |
+| `builtins.readFile "/proc/uptime"` | `require("fs").readFileSync("/proc/uptime", "utf8")` |
+| `builtins.fetchurl { url = "https://github.com/"; sha256 = ""; }` | `await fetch("https://github.com/")` |
 
 ## Links
 
