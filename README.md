@@ -73,7 +73,7 @@ Statement from [Wikipedia](http://en.wikipedia.org/wiki/Python_(programming_lang
 
 ### Example
 
-Below `const a` is a statement which consist of expression. [Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is a statement.
+Below `const a` is a statement which consist of expression. [Conditional (ternary) operator](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Operators/Conditional_Operator) is an expression.
 
 ```javascript
 const a = true ? 1 : 0;
