@@ -81,7 +81,9 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `[1 2] ++ [3 4]` | `[1, 2].concat([3, 4])` |
 | `builtins.concatLists [[1 2] [3 4] [5 6]]` | `[].concat([1, 2], [3, 4], [5, 6])` |
 | `builtins.head [0 1 2 3 4]` | `[0, 1, 2, 3, 4][0]` |
+| `lib.lists.init [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(0, -1)` |
 | `lib.lists.take 4 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(0, 4)` |
+| `lib.lists.last [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(-1)[0]` |
 | `builtins.tail [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1)` |
 | `lib.lists.drop 2 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(2)` |
 | `lib.lists.sublist 1 3 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1, 4)` |
