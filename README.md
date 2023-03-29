@@ -76,6 +76,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | --- | --- |
 | `builtins.elemAt [0 1 2] 2` | `[0, 1, 2][2]` |
 | `builtins.elem 2 [0 1 2]` | `[0, 1, 2].includes(2)` |
+| `builtins.length [0 1 2]` | `[0, 1, 2].length` |
 | `builtins.map (x: x+1) [0 1 2]` | `[0, 1, 2].map(x => x+1)` |
 | `builtins.filter (x: x>0) [0 1 2]` | `[0, 1, 2].filter(x => x>0)` |
 | `[1 2] ++ [3 4]` | `[1, 2].concat([3, 4])` |
