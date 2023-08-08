@@ -73,6 +73,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `builtins.substring 2 1 "abcde"` | `"abcde".substr(2, 1)` |
 | `builtins.substring 2 (3-2) "abcde"` | `"abcde".slice(2, 3)` |
 | `let substringEnd = start: string: let length = builtins.stringLength string; in builtins.substring start length string; in substringEnd 2 "abcde"` | `"abcde".slice(2)` |
+| `let stringIndexOfFirstSpace = string: let matches = builtins.match "([^[:space:]]*)([[:space:]]).*" string; in if matches == null then -1 else builtins.stringLength (builtins.elemAt matches 0); in stringIndexOfFirstSpace "a \n\tb c"` | `var m = /\s/.exec("a \n\tb c"); m ? m.index : -1` |
 
 ### Arrays
 
