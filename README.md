@@ -69,6 +69,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `builtins.fromJSON ''[0, 1, 2]''` | ``JSON.parse(`[0, 1, 2]`)`` |
 | `builtins.toJSON [0 1 2]` | `JSON.stringify([0, 1, 2])` |
 | `builtins.getEnv "HOME"` | `require("process").env["HOME"]` |
+| `with import <nixpkgs>; let stringIndexOf = string: needle: let matches = builtins.match ("^(.*?)(" + (lib.strings.escapeRegex needle) + ").*") string; in if matches == null then -1 else builtins.stringLength (builtins.elemAt matches 0); in stringIndexOf "abc" "b"` | `"abc".indexOf("b")` |
 
 ### Arrays
 
