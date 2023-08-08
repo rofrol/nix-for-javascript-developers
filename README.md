@@ -70,6 +70,8 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `builtins.toJSON [0 1 2]` | `JSON.stringify([0, 1, 2])` |
 | `builtins.getEnv "HOME"` | `require("process").env["HOME"]` |
 | `let stringIndexOf = string: needle: let parts = builtins.split needle string; in if builtins.length parts == 1 then -1 else builtins.stringLength (builtins.elemAt parts 0); in stringIndexOf "abbbc" "b"` | `"abbbc".indexOf("b")` |
+| `builtins.substring 2 1 "abcde"` | `"abcde".substr(2, 1)` |
+| `builtins.substring 2 (3-2) "abcde"` | `"abcde".slice(2, 3)` |
 
 ### Arrays
 
