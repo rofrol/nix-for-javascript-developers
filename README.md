@@ -109,6 +109,7 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `{a=1;}.a` | `{a:1}.a` |
 | `{a=1;}.${"a"}` | `{a:1}["a"]` |
 | `builtins.getAttr "a" {a=1;}` | `{a:1}["a"]` |
+| `Object.assign({}, {a:1}, {b:2})` | `{a=1;} // {b=2;}` | 
 
 ### Files
 
