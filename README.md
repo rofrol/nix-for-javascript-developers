@@ -94,6 +94,8 @@ If you want to have `nix eval` available in nixos stable, you need to install un
 | `lib.lists.drop 2 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(2)` |
 | `lib.lists.sublist 1 3 [0 1 2 3 4]` | `[0, 1, 2, 3, 4].slice(1, 4)` |
 | `builtins.genList (x: x * x) 5` | `Array.from({ length: 5 }).map((_, x) => x * x)` |
+| `lib.lists.unique [1 1 2 2 3 3]` | `Array.from(new Set([1, 1, 2, 2, 3, 3]))` |
+| `lib.lists.naturalSort ["100" "20" "3"]` | <code>["100" "20" "3"].sort(require("[natsort](https://www.npmjs.com/package/natsort)")())</code> |
 
 ### Objects
 
